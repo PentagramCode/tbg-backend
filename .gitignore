@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Enviroments
+.env
+
+# Yarn
+yarn.lock
+
+# Build
+build/
