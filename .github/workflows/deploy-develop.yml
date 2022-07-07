@@ -8,7 +8,6 @@ on:
     types: [opened, synchronize]
 
 jobs:
-
   avoid_reduncy: 
     runs-on: ubuntu-latest
     steps:
@@ -50,7 +49,7 @@ jobs:
         with:
           name: build
           path: build
-          
+
   deploy:
     needs: [lint, build]
     runs-on: ubuntu-latest
