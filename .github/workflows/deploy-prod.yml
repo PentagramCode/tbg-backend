@@ -2,8 +2,10 @@ name: Deployment Production
 
 on: 
   push: 
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize]
 
 jobs:
   deploy:
@@ -21,6 +23,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Deploy to Heroku
+        if: ${{ github.event_name == 'push' }}
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
