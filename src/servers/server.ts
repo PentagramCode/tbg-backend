@@ -1,8 +1,8 @@
-import express, { Application } from "express";
+import express, { Application } from 'express';
 import cors from 'cors';
 
 // Routes
-import StartRoutes from "../routes/start.route";
+import StartRoutes from '../routes/start.route';
 
 class Server {
 
@@ -29,8 +29,8 @@ class Server {
 
     listen () {
         this.app.listen(this.port, () => {
-            console.log(`Server listening in port ${ this.port } ✅`)
-        })
+            console.log(`Server listening in port ${ this.port } ✅`);
+        });
     }
 }
 
