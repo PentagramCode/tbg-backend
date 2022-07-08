@@ -3,6 +3,7 @@ import cors from 'cors';
 
 // Routes
 import StartRoutes from '../routes/start.route';
+import dbConnection from '../config/dbConnection';
 
 class Server {
 
@@ -13,8 +14,13 @@ class Server {
         this.port = process.env.PORT || '';
         this.app = express();
 
+        this.runDatabase();
         this.middlewares();
         this.routes();  
+    }
+
+    async runDatabase () {
+        await dbConnection();
     }
 
     middlewares () {

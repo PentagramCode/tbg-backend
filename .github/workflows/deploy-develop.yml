@@ -1,0 +1,71 @@
+name: Deployment Development
+
+on: 
+  push: 
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+    types: [opened, synchronize]
+
+jobs:
+  avoid_reduncy: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previus Redundant Builds
+        uses: styfle/cancel-workflow-action@0.9.1 
+        with:
+          access_token: ${{ github.token }}
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: yarn install
+      - name: Lint
+        run: yarn lint
+
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+  deploy:
+    needs: [lint, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v3
+      - name: Deploy to Heroku
+        if: ${{ github.event_name == 'push' }}
+        uses: akhileshns/heroku-deploy@v3.12.12 
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_DEV}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          healthcheck: "https://${{secrets.HEROKU_APP_DEV}}.herokuapp.com/health"
+          rollbackonhealthcheckfailed: true
+
+
