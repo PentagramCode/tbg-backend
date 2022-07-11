@@ -19,12 +19,13 @@ Node v18
 
 # Environment
 
+Remember to create the .env file in the root folder of the project.
 Required variables to be used on your local development:
 
 - PORT
 - MONGODB_URI_PROD
 - MONGODB_URI_DEV
-
+- SECRETORPRIVATEKEY
 # Setup
 
 1. Clone the respository

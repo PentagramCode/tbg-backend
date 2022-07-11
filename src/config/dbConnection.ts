@@ -6,7 +6,7 @@ const dbConnection = async() => {
         await connect(mongoUri);
         console.log('Database Online ✅');
     } catch (error) {
-        console.log(`Database connection error ${error}`);
+        console.log(`Database connection error ${error} 💀`);
     }
 };
 
