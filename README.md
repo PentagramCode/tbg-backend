@@ -22,6 +22,8 @@ Node v18
 Required variables to be used on your local development:
 
 - PORT
+- MONGODB_URI_PROD
+- MONGODB_URI_DEV
 
 # Setup
 
