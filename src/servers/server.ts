@@ -3,16 +3,26 @@ import cors from 'cors';
 
 // Routes
 import StartRoutes from '../routes/start.route';
+import AuthRoutes from '../routes/auth.route';
+
+// Config
 import dbConnection from '../config/dbConnection';
+
+// Interfaces
+import IPaths from '../interfaces/paths';
 
 class Server {
 
-    private port : string;
-    private app  : Application;
+    private port  : string;
+    private app   : Application;
+    private paths : IPaths;
 
     constructor () {
         this.port = process.env.PORT || '';
         this.app = express();
+        this.paths = {
+            auth: '/api/auth'
+        };
 
         this.runDatabase();
         this.middlewares();
@@ -31,6 +41,7 @@ class Server {
 
     routes () {
         this.app.use('/', StartRoutes);
+        this.app.use(this.paths.auth, AuthRoutes);
     }
 
     listen () {

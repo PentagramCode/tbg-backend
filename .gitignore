@@ -6,6 +6,7 @@ node_modules/
 
 # Yarn
 yarn.lock
+yarn-error.log
 
 # Build
 build/
