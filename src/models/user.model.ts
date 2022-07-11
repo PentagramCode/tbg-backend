@@ -15,6 +15,8 @@ const UserSchemma = new Schema<IUser>({
     google: { type: Boolean, default: false },
     role: { type: String, enum: Roles, default: Roles.user },
     infoClient: { type: Object, default: {} },
+}, {
+    timestamps: true 
 });
 
 // Exclude props
