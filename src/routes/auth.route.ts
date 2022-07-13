@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { login, register } from '../controllers/auth.controller';
 
 // Middlewares
-import { registerValidations, loginValidations } from '../middlewares/validations/auth/authValidations';
+import { registerValidations, loginValidations } from '../middlewares/validations/authValidations';
 
 const router = Router();
 

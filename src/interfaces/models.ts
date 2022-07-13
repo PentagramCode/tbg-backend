@@ -36,3 +36,17 @@ interface IInfoClient {
     lastname: string;
     address: string;
 }
+
+/**
+ * This interface describes the properties of the user's personal information
+ * @typeParam name: string - Name of the collection
+ * @typeParam status: string - Status of the collection
+ * @typeParam userId: string - The mongo id user (admin) schemma
+ */
+export interface ICollection {
+    _id: ObjectId;
+    name: string;
+    status: boolean;
+    userId: ObjectId
+}
+

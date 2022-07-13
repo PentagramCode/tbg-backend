@@ -1,8 +1,8 @@
 import { check } from 'express-validator';
 
 // Helpers
-import { existErrors } from '../../../helpers/existErrors';
-import { existUsername } from '../../../helpers/dbValidations';
+import { existErrors } from '../../helpers/existErrors';
+import { existUsername } from '../../helpers/dbValidations';
 
 /**
  * Route validations register

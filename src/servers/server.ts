@@ -4,6 +4,7 @@ import cors from 'cors';
 // Routes
 import StartRoutes from '../routes/start.route';
 import AuthRoutes from '../routes/auth.route';
+import CollectionRoutes from '../routes/collection.route';
 
 // Config
 import dbConnection from '../config/dbConnection';
@@ -21,7 +22,8 @@ class Server {
         this.port = process.env.PORT || '';
         this.app = express();
         this.paths = {
-            auth: '/api/auth'
+            auth: '/api/auth',
+            collection: '/api/collection'
         };
 
         this.runDatabase();
@@ -42,6 +44,7 @@ class Server {
     routes () {
         this.app.use('/', StartRoutes);
         this.app.use(this.paths.auth, AuthRoutes);
+        this.app.use(this.paths.collection, CollectionRoutes);
     }
 
     listen () {
