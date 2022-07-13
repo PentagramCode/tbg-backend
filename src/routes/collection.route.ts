@@ -4,13 +4,13 @@ import { Router } from 'express';
 import { getCollection, postCollection, putCollection, deleteCollection } from '../controllers/collection.controller';
 
 // Middlewares
-import { getCollectionsValidations } from '../middlewares/validations/collection/collectionValidations';
+import { deleteCollectionValidations, getCollectionsValdiations, postCollectionValidations, putCollectionValidations } from '../middlewares/validations/collectionValidations';
 
 const router =  Router();
 
-router.get('/', getCollectionsValidations ,getCollection);
-router.post('/', postCollection);
-router.put('/:id', putCollection);
-router.delete('/:id', deleteCollection);
+router.get('/', getCollectionsValdiations, getCollection);
+router.post('/', postCollectionValidations, postCollection);
+router.put('/:id', putCollectionValidations, putCollection);
+router.delete('/:id', deleteCollectionValidations, deleteCollection);
 
 export default router;

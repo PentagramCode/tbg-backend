@@ -20,12 +20,20 @@ const validateJwt = async(req = request, res: Response, next: NextFunction) => {
 
         const user = await UserModel.findById( id );
 
+        // Check if the user exists 
+        if( !user ){
+            return res.status(401).json({
+                msg: 'The user does not exist'
+            });
+        }
+
         // Verify status user
         if( !user.status ){
             return res.status(401).json({
-
+                msg: 'The user is inactive'
             });
         }
+
         
         req.user = user;
 
