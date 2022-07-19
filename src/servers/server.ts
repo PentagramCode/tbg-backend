@@ -15,7 +15,7 @@ import IPaths from '../interfaces/paths';
 class Server {
 
     private port  : string;
-    private app   : Application;
+    public  app   : Application;
     private paths : IPaths;
 
     constructor () {
