@@ -1,7 +1,7 @@
 import { connect } from 'mongoose';
 
 const dbConnection = async() => {
-    const mongoUri : string = process.env.MONGODB_URI_DEV || '';
+    const mongoUri : string = process.env.MONGODB_URI || '';
     try {
         await connect(mongoUri);
         console.log('Database Online ✅');
