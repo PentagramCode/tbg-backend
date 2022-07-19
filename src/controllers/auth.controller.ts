@@ -9,7 +9,6 @@ import generateJWT from '../helpers/generateJwt';
 
 export const register = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
-
     try {
         // Create User
         const user = new UserModel({
